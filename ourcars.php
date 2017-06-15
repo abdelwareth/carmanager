@@ -14,32 +14,8 @@
        <script>
 	   
        /*عمل متغير يخزن فيه قيمة التاريخ وبعدين بالداله بوست راح قاله ان التاريخ اللي هناك                                   هو التاريخ دا وقاله استرجعلي الداتا اللي هترجعها في الشات وبس كدا ودالة تريم                                                                                     لحذف المسافات والتاب  */
-             
-
-               $.post("codes/carnums.php",{},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-
-                           $("#id3").val(data);
-						   if(data==0){
-							   $("#id2").val(0);
-							    document.getElementById("nxt").disabled = true;
-								document.getElementById("img").disabled = true;
-							   }
-							   
-                       }
-                   });
-
-    
-
-
-       </script>
-               <script>
-			  
-	this.array;		  
+    this.array;	
+	this.array1;	  
 	this.a;
 	this.b;
 	this.c;
@@ -49,6 +25,45 @@
 	this.num;
 	this.carnum;
 	num=0;
+
+               $.post("codes/carnums.php",{},
+                   function (data) {
+                       data=data.trim();
+                       if(data=="error"||data=="false"){
+                           alert("Error .. please try again ???");
+                       }else {
+                           array1 = jQuery.parseJSON(data);
+                           $("#id3").val(array1[0]);
+						   if(array1[0]==0){
+							   $("#id2").val(0);
+							    document.getElementById("nxt").disabled = true;
+								document.getElementById("img").disabled = true;
+							   }
+			        else {a=array1[1];
+						  b=array1[2];
+						  c=array1[3];
+						  d=array1[4];
+						  e=array1[5];
+						  f=array1[6];
+						  carnum=array1[7];	
+			              $("#previous").hide(); 
+		                  $("#previous1").show(); 
+				   	      if (num >= carnum-1)	 {
+		                  $("#next").hide(); 
+		                  $("#next1").show();
+		                        } 
+		                  else {$("#next").show();
+	                      $("#next1").hide();}	   
+                            }}
+                           });
+
+    
+
+
+       </script>
+               <script>
+			  
+	
 	
 	         $.post("codes/carname.php",{data:1},
                    function (data) {
@@ -56,7 +71,7 @@
                        if(data=="error"||data=="false"){
                            alert("Error .. please try again ???");
                        }else {
-                          array = jQuery.parseJSON(data);
+                          
 						  a=array.feature1;
 						  b=array.feature2;
 						  c=array.feature3;
@@ -130,24 +145,15 @@
 $('#nxt').click(function(){
 	num=0;
 	var p =(parseInt($('#id2').val(), 10)+1);
-	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'});
-   document.getElementById("prev").disabled = false;
-		               $.post("codes/carnums1.php",{data:(p+1)},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          if(data==0){
-							  document.getElementById("nxt").disabled = true;
-							  }
-							 
-								  	 var pic =document.getElementById("img");
-                                    pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
-                                    $('#id2').val(p);   }
-                   });
 	
-	       
+	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'
+	  });
+   document.getElementById("prev").disabled = false;
+
+	
+	       	 var pic =document.getElementById("img");
+             pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
+             $('#id2').val(p); 
        	         $.post("codes/carname.php",{data:p},
                    function (data) {
                        data=data.trim();
@@ -173,7 +179,9 @@ $('#nxt').click(function(){
                        }
                    });
 			
-		
+		  if(p >=array1[0]){
+							  document.getElementById("nxt").disabled = true;
+							  }
   
 
 }
