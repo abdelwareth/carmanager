@@ -36,7 +36,7 @@ if(!isset($_SESSION['username'])) {
  <div class="form-group">
  <p> insert car </p>
 <label for="file"> car photo </label>
-<input  type="file" class="form-control" name="file" id="4" >  
+<input  type="file" class="form-control" name="file[]" id="4" multiple="multiple" >  
 <div class="thumbnail-container">
 
 
@@ -95,10 +95,11 @@ echo '</select>';
 <input  type="text" class="form-control" name="fea4" id="fea" >
  <label for="text"> feature5 </label>
 <input  type="text" class="form-control" name="fea5" id="fea" >
-<button type="submit" class="btn btn-success"  >insert</button>
+<button type="submit" class="btn btn-success" id="in"  >insert</button>
 </div> 
 </form>
-
+<button type="submit" class="btn btn-info" id="home" onclick="location.href='login.php'" 
+	 style="border-radius:75px;height:100px; width:100px;"> <img src="photos/home.png" alt="image" id="im" class="img-circle" title="HOME"  style="  padding:0px;  "> </button>
 <script>   
    $('#sel').change(function(){
   var qty = $('#sel').val();
@@ -112,6 +113,7 @@ echo '</select>';
   
        
 <style>
+
 .form{display: inline-block;}
 .thumbnail-container {
 
@@ -152,7 +154,7 @@ width:100px;
 	width:10px;	
 		}
 	#t{width:200px;}	
-button{
+#in{
  width: 33em;  height: 4em;
 	margin-top:15px;
 	}
