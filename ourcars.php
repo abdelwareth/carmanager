@@ -39,73 +39,45 @@
        </script>
                <script>
 			  
+	this.array;		  
 	this.a;
 	this.b;
 	this.c;
     this.d;
 	this.e;
 	this.f;
+	this.num;
+	this.carnum;
+	num=0;
 	
-	         $.post("codes/carfeature1.php",{data:1},
+	         $.post("codes/carname.php",{data:1},
                    function (data) {
                        data=data.trim();
                        if(data=="error"||data=="false"){
                            alert("Error .. please try again ???");
                        }else {
-                          a =data;
-								  
+                          array = jQuery.parseJSON(data);
+						  a=array.feature1;
+						  b=array.feature2;
+						  c=array.feature3;
+						  d=array.feature4;
+						  e=array.feature5;
+						  f=array.uname;
+						  carnum=array.carsnum;	
+						  			   			   $("#previous").hide(); 
+		 $("#previous1").show(); 
+				   	 if (num >= carnum-1)	 {
+		$("#next").hide(); 
+		 $("#next1").show();
+		 } 
+		else {$("#next").show();
+	$("#next1").hide();}	  
                        }
+		
                    });
-				      $.post("codes/carfeature2.php",{data:1},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 b=data;  
-                       }
-                   });
-        $.post("codes/carfeature3.php",{data:1},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 c=data;	  
-                       }
-                   });
-				   
-				      $.post("codes/carfeature4.php",{data:1},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						d=data;	  
-                       }});
-			      $.post("codes/carfeature5.php",{data:1},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						e=data;	  
-                       }
-                   });
-				   	      $.post("codes/carname.php",{data:1},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						f=data;	  
-                       }
-                   }); 
+	
+		
+		 
  </script>
 
   <link rel="stylesheet" href="css/example.css">
@@ -126,23 +98,39 @@
 <input  type="text" class="form-control" name="idq" id="id3"  readonly > 
 </div>
 </div>
+
 </form>
+<form role="form" class="form3" id="form3">
+<div class="full" >
+<a id="previous">&#8249;</a>
+<a id="previous1"></a>
+</div>
+<div class="full" >
 <div id="photos">
 <div class="hover">
-<img id="img" src="http://localhost/carmanager /cars/1.jpg"/>
+<img id="img"  src="http://localhost/carmanager /cars/1.jpg"/>
 <p id="header"> </p>
 </div>
 </div>
+</div>
+<div class="full" >
+<a id="next">&#8250;</a>
+<a id="next1"></a>
+</div>
+</form>
 <form role="form" class="form2">
 <button type='button' class="btn btn-info" id="prev" disabled>prev</button>
 <button type='button' class="btn btn-success" id="nxt">next</button>
 
-</form>  
+</form>
+<button type="submit" class="btn btn-info" id="home" onclick="location.href='login.php'" 
+	 style="border-radius:75px;height:100px; width:100px;"> <img src="photos/home.png" alt="image" id="im" class="img-circle" title="HOME"  style="  padding:0px;  "> </button>  
 <script>
 
 $('#nxt').click(function(){
+	num=0;
 	var p =(parseInt($('#id2').val(), 10)+1);
-	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+'.jpg)','background-repeat': 'no-repeat'});
+	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'});
    document.getElementById("prev").disabled = false;
 		               $.post("codes/carnums1.php",{data:(p+1)},
                    function (data) {
@@ -155,70 +143,38 @@ $('#nxt').click(function(){
 							  }
 							 
 								  	 var pic =document.getElementById("img");
-                                    pic.src='http://localhost/carmanager /cars/'+p+'.jpg';
+                                    pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
                                     $('#id2').val(p);   }
                    });
 	
-	         $.post("codes/carfeature1.php",{data:p},
+	       
+       	         $.post("codes/carname.php",{data:p},
                    function (data) {
                        data=data.trim();
                        if(data=="error"||data=="false"){
                            alert("Error .. please try again ???");
                        }else {
-                          a =data;
-								  
+                          array = jQuery.parseJSON(data);
+						  a=array.feature1;
+						  b=array.feature2;
+						  c=array.feature3;
+						  d=array.feature4;
+						  e=array.feature5;
+						  f=array.uname;
+						  carnum=array.carsnum;	
+						  			   	 if (num >= carnum-1)	 {
+		$("#next").hide(); 
+		 $("#next1").show();
+		 }
+		 	else {$("#next").show();
+	$("#next1").hide();} 
+		$("#previous").hide(); 
+		 $("#previous1").show(); 	  
                        }
                    });
-				      $.post("codes/carfeature2.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 b=data;  
-                       }
-                   });
-        $.post("codes/carfeature3.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 c=data;	  
-                       }
-                   });
-				      $.post("codes/carfeature4.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						d=data;	  
-                       }
-                   });
-				   				      $.post("codes/carfeature5.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						e=data;	  
-                       }
-                   });
-                     	      $.post("codes/carname.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						f=data;	  
-                       }
-                   });   
+			
+		
+  
 
 }
 
@@ -227,76 +183,43 @@ $('#nxt').click(function(){
 <script>
 
 $('#prev').click(function(){
+	num=0;
 	var p =(parseInt($('#id2').val(), 10)-1);
-	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+'.jpg)','background-repeat': 'no-repeat'});
+	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'});
 		document.getElementById("nxt").disabled = false;
 	if(p<=1){
 		document.getElementById("prev").disabled = true;
 		}
 	 var pic =document.getElementById("img");
-     pic.src='http://localhost/carmanager /cars/'+p+'.jpg';
+     pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
 $('#id2').val(p);
 	
 	
-	         $.post("codes/carfeature1.php",{data:p},
+	         $.post("codes/carname.php",{data:p},
                    function (data) {
                        data=data.trim();
                        if(data=="error"||data=="false"){
                            alert("Error .. please try again ???");
                        }else {
-                          a =data;
-								  
-                       }
-                   });
-				      $.post("codes/carfeature2.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 b=data;  
-                       }
-                   });
-        $.post("codes/carfeature3.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-							 c=data;	  
-                       }
-                   });
-				      $.post("codes/carfeature4.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						d=data;	  
-                       }});
-			      $.post("codes/carfeature5.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						e=data;	  
-                       }
-                   });
-				              	      $.post("codes/carname.php",{data:p},
-                   function (data) {
-                       data=data.trim();
-                       if(data=="error"||data=="false"){
-                           alert("Error .. please try again ???");
-                       }else {
-                          
-						f=data;	  
+                          array = jQuery.parseJSON(data);
+						  a=array.feature1;
+						  b=array.feature2;
+						  c=array.feature3;
+						  d=array.feature4;
+						  e=array.feature5;
+						  f=array.uname;
+						  carnum=array.carsnum;
+						  			   	 if (num >= carnum-1)	 {
+	            	$("#next").hide(); 
+		          $("#next1").show();
+		          }
+		 	  else {$("#next").show();
+	          $("#next1").hide();} 
+		      $("#previous").hide(); 
+		      $("#previous1").show(); 		  
                        }
                    });  
+		
 }
 
 );
@@ -317,8 +240,100 @@ $("#photos").mouseenter(function() {
 		})
 	
 </script>
-
+<script>
+$('#next').click(function(){
+	$("#previous").show();
+	$("#previous1").hide();
+	var p =(parseInt($('#id2').val(), 10));
+	num=num+1;
+	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'});
+ var pic =document.getElementById("img");
+     pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
+	 
+	 if (num >= carnum-1)	 {
+		$("#next").hide(); 
+		 $("#next1").show();
+		 } 	
+	
+	})
+$('#previous').click(function(){
+	$("#next").show();
+	$("#next1").hide();
+	var p =(parseInt($('#id2').val(), 10));
+	num=num-1;
+	  $('body').css({'background-image': 'url(http://localhost/carmanager/cars/'+p+''+num+'.jpg)','background-repeat': 'no-repeat'});
+ var pic =document.getElementById("img");
+     pic.src='http://localhost/carmanager /cars/'+p+''+num+'.jpg';
+	
+	 if (num <= 0)	 {
+		$("#previous").hide(); 
+		 $("#previous1").show();
+		 } 	
+	
+	})
+	
+</script>
 <style translationtype="control-label" >
+.full{
+	 display: inline-block;
+	 margin:10px;
+	}
+a {
+    text-decoration: none;
+   
+   
+	font-size:70px;
+}
+
+#previous:hover {
+    background-color: #666;
+    color: black;
+    cursor:pointer;
+}
+#next:hover {
+    background-color: #666;
+    color: black;
+	cursor:pointer;
+}
+#previous {
+    background-color: #ddd;
+    color: black;
+    padding-right:20px;
+	padding-left:20px;
+	padding-top:40px;
+	padding-bottom:40px;
+	
+}
+#previous1 {
+    background-color: #ddd;
+    color: black;
+    padding-right:32px;
+	padding-left:32px;
+	padding-top:40px;
+	padding-bottom:40px;
+	display:none;
+	
+}
+#next {
+    background-color: #ddd;
+    color: black;
+	 padding-right:20px;
+	padding-left:20px;
+	padding-top:40px;
+	padding-bottom:40px;
+}
+#next1 {
+
+    background-color: #ddd;
+    color: black;
+	 padding-right:32px;
+	padding-left:32px;
+	padding-top:40px;
+	padding-bottom:40px;
+	display:none;
+}
+.form3{display:inline-block; width:800px; height:400px; margin-left:200px; background-color:inherit;}
+.form3:hover{background-color:inherit;}
 .form1{display:inline-block; width:270px; height:150px;}
 .form2{display:inline-block; width:270px; height:150px;}
 .cname{
@@ -343,8 +358,8 @@ $("#photos").mouseenter(function() {
 	padding-left:250px;
 	}
 #photos {position:relative;width:500px;height:300px;
-margin-left: 350px;
-margin-right:-350px;
+margin-left: 10px;
+margin-right:10px;
  border-radius: 25px;
 }
 #photos p {
@@ -377,7 +392,7 @@ margin-right:-350px;
 body {
 
 
-	background-image:url(http://localhost/carmanager/cars/1.jpg);
+	background-image:url(http://localhost/carmanager/cars/10.jpg);
 
 	 background-repeat: no-repeat;
    	 background-size:cover;
