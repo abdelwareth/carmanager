@@ -87,65 +87,72 @@ body {
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:10px;
-
+padding-left:17px;
+width:230px;
 }  
 #data1{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:38px;
+width:230px;
 }
 #data2{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:12px;
+width:230px;
 }
 #data3{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:18px;
+width:230px;
 }
 #data4{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
-
+padding-left:17px;
+width:230px;
 }
 #data5{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
-
+padding-left:17px;
+width:230px;
 }
 #data6{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:6px;
+width:230px;
 }
 #data7{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:15px;
+width:230px;
 }
 #data8{
 margin-top : 10px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:15px;
+width:230px;
 }
 #data9{
 margin-top :250px;
 margin-left:1000px;
 padding:0px;
 border-radius: 50px;
-padding-left:5px;
+padding-left:3px;
+width:230px;
 }
 #data10{
 margin-top : -120px;
