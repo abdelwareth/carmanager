@@ -11,7 +11,7 @@ $query=mysqli_query($connect,$sql);
 
 while ($row=mysqli_fetch_array($query)){
 
-			echo $row['uname'];
+			echo json_encode($row);
 }
 
 ?> 
